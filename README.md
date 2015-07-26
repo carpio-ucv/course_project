@@ -1,7 +1,9 @@
 # course_project
 Cleaning and getting data project
 
-The run_analysis.R takes information from 7 diferent .txt files, and produced a single tidy data set which is saved in a local directory. The files required in the local directory in order to run the code are:
+The run_analysis.R takes information from 7 diferent .txt files, and produces a single tidy data set which is saved in a local directory. This tidy data set summarises average of 86 measures/variables, grouped according to 6 different kind of activities.
+
+The files required in the local directory in order to run the code are:
 
 - 'features_info.txt': Shows information about the variables used on the feature vector
 - 'features.txt': List of all features
