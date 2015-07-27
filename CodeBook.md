@@ -60,15 +60,14 @@ The final tidy data set is creating by following the steps described bellow:
 
 The final tidy data set (tidydef.txt) contains 4 columns and 15,480 rows. The format of the final dataset can be appriciated bellow:
 
-----------------------------------------------------
-   Activities Subj_id   Variable Name        Mean
-1    WALKING       1 tBodyAcc.mean-X  0.27733076
-2    WALKING       1 tBodyAcc.mean-Y -0.01738382
-3    WALKING       1 tBodyAcc.mean-Z -0.11114810
-4    WALKING       1  tBodyAcc.std-X -0.28374026
-5    WALKING       1  tBodyAcc.std-Y  0.11446134
-6    WALKING       1  tBodyAcc.std-Z -0.2600279
------------------------------------------------------
+| Activities | Activities | Subj_id | Variable Name   | Mean        |
+|------------|------------|---------|-----------------|-------------|
+| 1          | WALKING    | 1       | tBodyAcc.mean-X | 0.27733076  |
+| 2          | WALKING    | 1       | tBodyAcc.mean-Y | -0.01738382 |
+| 3          | WALKING    | 1       | tBodyAcc.mean-Z | -0.1111481  |
+| 4          | WALKING    | 1       | tBodyAcc.std-X  | -0.28374026 |
+| 5          | WALKING    | 1       | tBodyAcc.std-Y  | 0.11446134  |
+| 6          | WALKING    | 1       | tBodyAcc.std-Z  | -0.2600279  |
 
 The fist column, "Activities", indicates which of the 6 activities included in the file "activity.labels.txt" was the participant performing when the measure was took. 
 
