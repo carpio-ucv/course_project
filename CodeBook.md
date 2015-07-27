@@ -34,7 +34,9 @@ Some additional notes (if avaialble, otherwise you can leave this section out).
 The final tidy data set is creating by following the steps described bellow:
 
 -1- The files are saved in a local directory, and the adequate R working directory is set. 
+
 -2- The file containing the names of all the variables measured ("features.txt"), is stored as a vector in a variable called "labels".
+
 3- The files containing information about the "test" measures are read and combined into a single data frame. Specificly, this files combined are: subject ID (subject_test.txt), labels of the activity performed (Y_test.txt), and the file containing the actual measures from 561 variables (X_test.txt).
 4- A similar procedured was followed tho the one in step 3, but using the files regarding "taining" data: (subject_train.txt), (Y_train.txt) and (X_train.txt).
 5- The two new files (from steps 3 and 4) containing the data from "test" and "training" measures are merged into a single data set (rbind).
