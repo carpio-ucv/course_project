@@ -18,60 +18,66 @@ For each record it is provided:
 - Its activity label. 
 - An identifier of the subject who carried out the experiment.
 
-
-
-
-###Collection of the raw data
-Description of how the data was collected.
-
-###Notes on the original (raw) data 
-Some additional notes (if avaialble, otherwise you can leave this section out).
-
 ##Creating the tidy datafile
 
 ###Guide to create the tidy data file
 
 The final tidy data set is creating by following the steps described bellow:
 
--1- The files are saved in a local directory, and the adequate R working directory is set. 
+1- The files are saved in a local directory, and the adequate R working directory is set. 
 
--2- The file containing the names of all the variables measured ("features.txt"), is stored as a vector in a variable called "labels".
+2- The file containing the names of all the variables measured ("features.txt"), is stored as a vector in a variable called "labels".
 
 3- The files containing information about the "test" measures are read and combined into a single data frame. Specificly, this files combined are: subject ID (subject_test.txt), labels of the activity performed (Y_test.txt), and the file containing the actual measures from 561 variables (X_test.txt).
+
 4- A similar procedured was followed tho the one in step 3, but using the files regarding "taining" data: (subject_train.txt), (Y_train.txt) and (X_train.txt).
+
 5- The two new files (from steps 3 and 4) containing the data from "test" and "training" measures are merged into a single data set (rbind).
+
 6- In the combined data set (from step 5) the variables containing the words "mean" and "std" (standard desviation) are identified by using the function grpel().
+
 7- Specificaly, A new data frame is created by combining the file "labels.txt" (containing 2 columns a numerical index 1:561 and the names of the 561 variables), with 3 more columns that represent logical vectors. The 3 logical columns indicate "TRUE" if the terms "mean", "Mean" (uppercase), and "std" (standard deviation) appear in the variable names respectively. 
+
 8-The data frame from step 7, is filtered for all cases where at least one of the 3 logical columns was equal to TRUE. 
+
 9- A new numerical vector called "index" is created based on the first column of the filtered data frame from step 8. It represents index(number) of the variable containing the words mean or std.
-10- A new filtered data base (filtered_df) is created by selecting only the columns corresponding to the indices from step 9. In other words, the columns containing variables including in their names the words mean or std were eliminated. From the initial 561 variables only 68 were kept. 
+
+10- A new filtered data base (filtered_df) is created by selecting only the columns corresponding to the indices from step 
+9. In other words, the columns containing variables including in their names the words mean or std were eliminated. From the initial 561 variables only 68 were kept. 
+
 11- With the purpose of making the variables' names more readible the brackets "()" haven been eliminated and dashes "-" and semicolons"," have been substituted by dots "." bu using the function sub().
+
 12- In addition, the column "task_labels" from the data frame filtered_df, which contains numeric values from 1 to 6 was redefined as a factor. In this regard the labesls of the factor were taken by reading the file "activity_labels.txt", which contains the names of the 6 different type of activities performed.
+
 13- A new more tidy data set is created by "melting" the filtered_df data frame based on activities ("task_labels") and subject ID ("Subj_id").
+
 14- The new data frame from step 13 is grouped based on task_labels, Subj_id and variable names by implementing the function group_by.
+
 15- Finally, by implementing the function summarise_each based on "mean", a final tidy file is obtained and stored in the local directory.
-16
 
 
-##Description of the variables in the tiny_data.txt file
-General description of the file including:
- - Dimensions of the dataset
- - Summary of the data
- - Variables present in the dataset
+##Description of the variables in the tidydef.txt file (tidy data set):
 
-(you can easily use Rcode for this, just load the dataset and provide the information directly form the tidy data file)
+The final tidy data set (tidydef.txt) contains 4 columns and 15,480 rows. The format of the final dataset can be appriciated bellow:
 
-###Variable 1 (repeat this section for all variables in the dataset)
-Short description of what the variable describes.
+----------------------------------------------------
+   Activities Subj_id   Variable Name        Mean
+1    WALKING       1 tBodyAcc.mean-X  0.27733076
+2    WALKING       1 tBodyAcc.mean-Y -0.01738382
+3    WALKING       1 tBodyAcc.mean-Z -0.11114810
+4    WALKING       1  tBodyAcc.std-X -0.28374026
+5    WALKING       1  tBodyAcc.std-Y  0.11446134
+6    WALKING       1  tBodyAcc.std-Z -0.2600279
+-----------------------------------------------------
 
-Some information on the variable including:
- - Class of the variable
- - Unique values/levels of the variable
- - Unit of measurement (if no unit of measurement list this as well)
- - In case names follow some schema, describe how entries were constructed (for example time-body-gyroscope-z has 4 levels of descriptors. Describe these 4 levels). 
+The fist column, "Activities", indicates which of the 6 activities included in the file "activity.labels.txt" was the participant performing when the measure was took. 
 
-(you can easily use Rcode for this, just load the dataset and provide the information directly form the tidy data file)
+Second column refers to the participant ID (30 in total). 
 
-####Notes on variable 1:
-If available, some additional notes on the variable not covered elsewehere. If no notes are present leave this section out.
+The third column show the variable names. The meaning of the abreviation of the names is following presented:
+Acc = Acceleration, Gyro=Gyroscope, 
+t=time, f=frequency
+mean=mean, std= Standard Deviation.
+
+The forth column is the average of each variable per type of activity and subject. All the measures are normalized and bounded within [-1,1].
 
